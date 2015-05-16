@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheets/style.css" rel="stylesheet">
+
+
+
+    <script src="modules/jquery.min.js"></script>
+    <script src="modules/angular.js"></script>
+    <script src="modules/angular-ui-router.js"></script>
+    <script src="modules/bootstrap.min.js"></script>
+    <script src="modules/angular-ui-bootstrap.js"></script>
+
+
+    <script src="javascripts/angularApp.js"></script>
+
+    <script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
+
+
+
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+
+
+
+
+<body ng-app="coreModule" ng-controller="CoreController" class="bg-full">
+
+
+
+
+
+    <div class="align-center">
+        <h1><b>
+    <br/>Beat: {{timeCount%4 + 1}}<br/>
+        </b></h1>
+    </div>
+    <br/>
+    <br/>
+
+
+
+
+
+
+    <div class="container">
+        <div class="row row-centered ">
+
+            <button ng-click="setToggle('hi')" class="btn btn-primary">LOAD DATA</button>
+
+            <div class="col-md-1 col-centered "></div>
+
+    <div class="col-md-7 bg-darkgrey corners-rounded col-centered ">
+        <div class="btn-group align-center" data-toggle="buttons-checkbox">
+            <div ng-repeat="soundIn in drumAudio" class="col-md-3 custom-inline ">
+                <button ng-click="setToggle2(soundIn)" ng-class="soundIn.toggle ? 'btn btn-yellow btn-custom ' : 'btn btn-silver btn-custom'"></button>
+            </div>
+        </div>
+    </div>
+
+            <div class="col-md-1 col-centered"></div>
+
+    <br/>
+    <br/>
+
+        </div>
+    </div>
+    {{connectCounter}}
+
+    <div ng-if="updateTime()%4 == 0" ng-init="soundPlay()"></div>
+
+
+
+    <li ng-repeat="play in playing track by $index">{{play}}</li>
+    <form ng-submit="sendSound()">
+        <input type="text" ng-model="playing.name"/>
+    </form>
+
+   </body>
+
+
+</html>
